@@ -83,7 +83,7 @@
         'militaryOperations': 'mo',
         'screening': 'scr',
         'surfaceTransportation': 'st',
-        'Core': 'nc'     
+        'Core': 'nc'
       }
 
       var path = row.get("fileAbsolutePath");
@@ -99,8 +99,8 @@
       // Determine if file is in domains dir or niem-core
       if (path.indexOf('domains') > -1) {
         namespaceType = 'domain';
-        
-        // Loop through domainLookup object to find match        
+
+        // Loop through domainLookup object to find match
         Object.keys(domainLookup).forEach(function(key) {
           if (path.indexOf(key) > -1) {
             domain = domainLookup[key];
@@ -142,7 +142,7 @@
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
       }
-      
+
       if (domain) {
         row.put("domain", domain);
       } else if (externalStandard) {
@@ -186,7 +186,7 @@
             facetsObject[facetName][facetKey] = value.toString();
 
             row.remove(columnName);
-          
+
           }
         }
 
@@ -215,13 +215,13 @@
       return row;
     };
 
-  ]]>  
+  ]]>
   </script>
 
   <document>
 
     <!-- this outer processor generates a list of files satisfying the conditions specified in the attributes -->
-    <entity name="f" 
+    <entity name="f"
             processor="FileListEntityProcessor"
             fileName=".*xsd"
             recursive="true"
@@ -230,7 +230,7 @@
             excludes="appinfo.xsd|conformanceTargets.xsd|localTerminology.xsd|gmx.xsd"
             onError="skip"
             transformer="script:getNamespaceInfo,TemplateTransformer"
-            baseDir="/solr-6.2.0/niem-xsd">
+            baseDir="/opt/solr/niem-xsd">
 
       <!-- the inner processors extract content using Xpath from each file found -->
       <entity name="element"
@@ -241,7 +241,7 @@
               forEach="/schema/element" >
 
         <field column ="id"               template="${f.namespacePrefix}:${element.name}" />
-        <field column="name"              xpath="/schema/element/@name"                        boost="5.0" />            
+        <field column="name"              xpath="/schema/element/@name"                        boost="5.0" />
         <field column="entityType"        template="Element" />
         <field column="definition"        xpath="/schema/element/annotation/documentation" />
         <field column="type"              xpath="/schema/element/@type" />
@@ -253,11 +253,11 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="TemplateTransformer,script:getContentStyle"                      
+              transformer="TemplateTransformer,script:getContentStyle"
               forEach="/schema/complexType" >
 
         <field column ="id"               template="${f.namespacePrefix}:${complexType.name}" />
-        <field column="name"              xpath="/schema/complexType/@name"                        boost="5.0" />            
+        <field column="name"              xpath="/schema/complexType/@name"                        boost="5.0" />
         <field column="definition"        xpath="/schema/complexType/annotation/documentation" />
         <field column="entityType"        template="Type" />
 
@@ -269,7 +269,7 @@
         <field column="elements"          xpath="/schema/complexType/complexContent/extension/sequence/element/@ref" />
 
         <!-- For CSC -->
-        <field column="parentSimpleType"  xpath="/schema/complexType/simpleContent/extension/@base" />      
+        <field column="parentSimpleType"  xpath="/schema/complexType/simpleContent/extension/@base" />
       </entity>
 
 
@@ -277,12 +277,12 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="script:getFacetList,TemplateTransformer"                             
+              transformer="script:getFacetList,TemplateTransformer"
               forEach="/schema/simpleType" >
 
 
         <field column ="id"           template="${f.namespacePrefix}:${simpleType.name}" />
-        <field column="name"          xpath="/schema/simpleType/@name"                        boost="5.0" />            
+        <field column="name"          xpath="/schema/simpleType/@name"                        boost="5.0" />
         <field column="definition"    xpath="/schema/simpleType/annotation/documentation" />
         <field column="entityType"    template="Type" />
 
