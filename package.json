@@ -1,0 +1,9 @@
+{
+  "name": "dhsniem-solr",
+  "version": "0.0.0",
+  "description": "Solr for the dhsniem project.",
+  "main": "index.js",
+  "author": "Federal Deloitte Digital",
+  "license": "UNLICENSED",
+  "repository": "https://stash.federal.ddhive.com/projects/DN/repos/dhsniem-solr"
+}
