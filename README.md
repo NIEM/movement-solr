@@ -13,3 +13,4 @@ To run Solr locally with Docker:
 docker build -t wist-solr .
 docker run -d -p 8983:8983 -t wist-solr
 ```
+
