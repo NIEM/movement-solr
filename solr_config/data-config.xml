@@ -198,6 +198,7 @@
       return row;
     };
 
+
     function getContentStyle(row) {
 
       var contentStyle;
@@ -211,6 +212,24 @@
       }
 
       row.put("contentStyle", contentStyle);
+
+      return row;
+    };
+
+
+    function getIsBG(row) {
+
+      var isBG;
+      var elementName = row.get("name");
+
+      // Check if element name contains a BG disqualifying word
+      if ( elementName.indexOf("Augmentation") >= 0 || elementName.indexOf("Association") >= 0 ) {
+        isBG = 0;
+      } else {
+        isBG = 1;
+      }
+
+      row.put("isBG", isBG);
 
       return row;
     };
@@ -237,7 +256,7 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="TemplateTransformer"
+              transformer="TemplateTransformer,script:getIsBG"
               forEach="/schema/element" >
 
         <field column ="id"               template="${f.namespacePrefix}:${element.name}" />
@@ -260,6 +279,7 @@
         <field column="name"              xpath="/schema/complexType/@name"                        boost="5.0" />
         <field column="definition"        xpath="/schema/complexType/annotation/documentation" />
         <field column="entityType"        template="Type" />
+        <field column="isBG"              template="0" />
 
         <field column="complexContent"    xpath="/schema/complexType/complexContent" />
         <field column="simpleContent"     xpath="/schema/complexType/simpleContent" />
@@ -285,6 +305,7 @@
         <field column="name"          xpath="/schema/simpleType/@name"                        boost="5.0" />
         <field column="definition"    xpath="/schema/simpleType/annotation/documentation" />
         <field column="entityType"    template="Type" />
+        <field column="isBG"          template="0" />
 
         <field column="facetValue_enumeration"        xpath="/schema/simpleType/restriction/enumeration/@value" />
         <field column="facetValue_minInclusive"       xpath="/schema/simpleType/restriction/minInclusive/@value" />

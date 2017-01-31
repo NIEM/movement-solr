@@ -136,6 +136,7 @@
     <field name="otherNamespace"    type="string"       indexed="true"  stored="true" multiValued="false" />
     <field name="namespacePriority" type="int"          indexed="true"  stored="true" multiValued="false" />
     <field name="namespacePrefix"   type="string"       indexed="false" stored="false" multiValued="false" />    
+    <field name="isBG"              type="int"          indexed="true"  stored="true" multiValued="false" />
 
 
     <!-- Element fields -->
