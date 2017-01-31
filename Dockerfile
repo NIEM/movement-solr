@@ -25,4 +25,4 @@ RUN /opt/solr/bin/solr start && \
     /opt/solr/bin/solr status && \
     sleep 10 && \
     curl http://localhost:8983/solr/dhsniem/dataimport?command=full-import && \
-    sleep 60
+    sleep 120
