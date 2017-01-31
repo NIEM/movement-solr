@@ -14,3 +14,10 @@ docker build -t wist-solr .
 docker run -d -p 8983:8983 -t wist-solr
 ```
 
+# Jenkins Job Setup 
+
+```
+#!bin/bash
+chmod u+x deploy.sh
+./deploy.sh
+```
