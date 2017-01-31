@@ -265,6 +265,7 @@
         <field column="definition"        xpath="/schema/element/annotation/documentation" />
         <field column="type"              xpath="/schema/element/@type" />
         <field column="abstract"          xpath="/schema/element/@abstract" />
+        <field column="substitutionGroup" xpath="/schema/element/@substitutionGroup" />
       </entity>
 
 
