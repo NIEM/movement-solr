@@ -136,10 +136,12 @@
     <field name="otherNamespace"    type="string"       indexed="true"  stored="true" multiValued="false" />
     <field name="namespacePriority" type="int"          indexed="true"  stored="true" multiValued="false" />
     <field name="namespacePrefix"   type="string"       indexed="false" stored="false" multiValued="false" />    
+    <field name="isBG"              type="int"          indexed="true"  stored="true" multiValued="false" />
 
 
     <!-- Element fields -->
     <field name="type"              type="text_general" indexed="true"  stored="true" multiValued="false" />
+    <field name="substitutionGroup" type="text_general" indexed="false" stored="true" multiValued="false" />
     <!-- TODO: Eliminate this field and instead populate type field with value 'abstract'. Or use default value on type field -->
     <field name="abstract"          type="string" indexed="false" stored="true" multiValued="false" />
 
