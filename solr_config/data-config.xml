@@ -234,6 +234,14 @@
       return row;
     };
 
+
+    function getFieldLength(row) {
+      var name = row.get("name");
+      var nameLength = name.length;
+      row.put("nameLength", nameLength);
+      return row;
+    }
+
   ]]>
   </script>
 
@@ -256,13 +264,13 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="TemplateTransformer,script:getIsBG"
+              transformer="TemplateTransformer,script:getIsBG,script:getFieldLength"
               forEach="/schema/element" >
 
         <field column ="id"               template="${f.namespacePrefix}:${element.name}" />
-        <field column="name"              xpath="/schema/element/@name"                        boost="5.0" />
+        <field column="name"              xpath="/schema/element/@name"                      />
+        <field column="definition"        xpath="/schema/element/annotation/documentation"  />
         <field column="entityType"        template="Element" />
-        <field column="definition"        xpath="/schema/element/annotation/documentation" />
         <field column="type"              xpath="/schema/element/@type" />
         <field column="abstract"          xpath="/schema/element/@abstract" />
         <field column="substitutionGroup" xpath="/schema/element/@substitutionGroup" />
@@ -273,12 +281,12 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="TemplateTransformer,script:getContentStyle"
+              transformer="TemplateTransformer,script:getContentStyle,script:getFieldLength"
               forEach="/schema/complexType" >
 
         <field column ="id"               template="${f.namespacePrefix}:${complexType.name}" />
-        <field column="name"              xpath="/schema/complexType/@name"                        boost="5.0" />
-        <field column="definition"        xpath="/schema/complexType/annotation/documentation" />
+        <field column="name"              xpath="/schema/complexType/@name"                       />
+        <field column="definition"        xpath="/schema/complexType/annotation/documentation"   />
         <field column="entityType"        template="Type" />
         <field column="isBG"              template="0" />
 
@@ -298,12 +306,12 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="script:getFacetList,TemplateTransformer"
+              transformer="script:getFacetList,TemplateTransformer,script:getFieldLength"
               forEach="/schema/simpleType" >
 
 
         <field column ="id"           template="${f.namespacePrefix}:${simpleType.name}" />
-        <field column="name"          xpath="/schema/simpleType/@name"                        boost="5.0" />
+        <field column="name"          xpath="/schema/simpleType/@name"                   />
         <field column="definition"    xpath="/schema/simpleType/annotation/documentation" />
         <field column="entityType"    template="Type" />
         <field column="isBG"          template="0" />

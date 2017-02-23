@@ -120,65 +120,63 @@
 
     <field name="id"                type="string"       indexed="true" stored="true" required="true" multiValued="false" />
     <field name="_version_"         type="long"         indexed="true" stored="false" />
-    <field name="_root_"            type="string"       indexed="true" stored="false" docValues="false" />
-    <field name="_text_"            type="text"         indexed="true" stored="false" multiValued="true" />
+    <field name="_text_"            type="text_general" indexed="true" stored="false" multiValued="true" />
+    <!-- <field name="_root_"            type="string"       indexed="true" stored="false" docValues="false" /> -->
 
-    <!-- Global NIEM fields -->
-    <field name="name"              type="string_name" indexed="true"  stored="true"  multiValued="false" omitNorms="false" />
-    <field name="definition"        type="text_general" indexed="false" stored="true"  multiValued="false" />
 
-    <!-- All fields used for faceting should be string/int and indexed -->
-    <field name="entityType"        type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="namespaceType"     type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="namespace"         type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="domain"            type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="externalStandard"  type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="otherNamespace"    type="string"       indexed="true"  stored="true" multiValued="false" />
-    <field name="namespacePriority" type="int"          indexed="true"  stored="true" multiValued="false" />
-    <field name="namespacePrefix"   type="string"       indexed="false" stored="true" multiValued="false" />    
-    <field name="isBG"              type="int"          indexed="true"  stored="true" multiValued="false" />
-
+    <!-- Global NIEM fields used for Elements and Types -->
+    <field name="name"              type="string_name"  indexed="true"  stored="true"  />
+    <field name="definition"        type="string"       indexed="false" stored="true"  />
+    <field name="namespaceType"     type="string"       indexed="true"  stored="true"  />
+    <field name="namespace"         type="string"       indexed="true"  stored="true"  />
+    <field name="domain"            type="string"       indexed="true"  stored="true"  />
+    <field name="externalStandard"  type="string"       indexed="true"  stored="true"  />
+    <field name="otherNamespace"    type="string"       indexed="true"  stored="true"  />
+    <field name="namespacePriority" type="int"          indexed="true"  stored="true"  />
+    <field name="isBG"              type="int"          indexed="true"  stored="true"  />
+    <field name="nameLength"        type="int"          indexed="true"  stored="false" />
+    <field name="namespacePrefix"   type="string"       indexed="false" stored="true"  />    
+    <field name="entityType"        type="string"       indexed="false" stored="true"  />
 
     <!-- Element fields -->
-    <field name="type"              type="text_general" indexed="true"  stored="true" multiValued="false" />
-    <field name="substitutionGroup" type="text_general" indexed="true"  stored="true" multiValued="false" />
-    <!-- TODO: Eliminate this field and instead populate type field with value 'abstract'. Or use default value on type field -->
-    <field name="abstract"          type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="substitutionGroup" type="string"       indexed="true"   stored="true" />
+    <field name="type"              type="string"       indexed="false"  stored="true" />
+    <field name="abstract"          type="string"       indexed="false"  stored="true" />
 
     <!-- ComplexType fields -->
-    <field name="contentStyle"      type="string" indexed="false" stored="true" multiValued="false" />
-    <field name="complexContent"    type="string" indexed="false" stored="false" multiValued="false" />
-    <field name="simpleContent"     type="string" indexed="false" stored="false" multiValued="false" />
+    <field name="contentStyle"      type="string" indexed="false" stored="true"  />
+    <field name="complexContent"    type="string" indexed="false" stored="false" />
+    <field name="simpleContent"     type="string" indexed="false" stored="false" />
 
     <!-- Complex CCC Type fields -->
-    <field name="parentTypeName"    type="string" indexed="false" stored="true" multiValued="false" />
-    <field name="elements"          type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="parentTypeName"    type="string" indexed="false" stored="true"  />
+    <field name="elements"          type="string" indexed="false" stored="true" multiValued="true" />
 
     <!-- Complex CSC Type fields -->
-    <field name="parentSimpleType"  type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="parentSimpleType"  type="string" indexed="false" stored="true" />
 
     <!-- SimpleType fields -->
-    <field name="facets"                    type="string" indexed="false" stored="true" multiValued="true" />  
+    <field name="facets"                    type="string" indexed="false" stored="true"   multiValued="true" />  
     <dynamicField name="facetValue_*"       type="string" indexed="false" stored="false"  multiValued="true" />
     <dynamicField name="facetDefinition_*"  type="string" indexed="false" stored="false"  multiValued="true" />
 
 
     <!-- Only enabled in the "schemaless" data-driven example (assuming the client
          does not know what fields may be searched) because it's very expensive to index everything twice. -->
-    <!-- copyfields for default search -->
-    <copyField source="name"              dest="_text_"/>
-    <copyField source="definition"        dest="_text_"/>
-    <copyField source="type"              dest="_text_"/>
-    <copyField source="parentTypeName"    dest="_text_"/>
-    <copyField source="elements"          dest="_text_"/>
-    <copyField source="parentSimpleType"  dest="_text_"/>
-    <copyField source="facets"            dest="_text_"/>
+         <!-- <copyfield source="*" dest="_text_" /> -->
+
+
+    <!-- Copy fields to tokenized and analyzed fields used for querying -->
+    <copyField source="name"              dest="name_query"/>
+    <copyField source="definition"        dest="definition_query"/>
+    <copyField source="type"              dest="type_query"/>
+
 
     <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 
        EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
        RESTRICTION: the glob-like pattern in the name attribute must have
-       a "*" only at the start or the end.  -->
+       a "*" only at the start or the end. -->
    
     <dynamicField name="*_i"  type="int"    indexed="true"  stored="true"/>
     <dynamicField name="*_is" type="ints"    indexed="true"  stored="true"/>
@@ -251,28 +249,25 @@
        standard package such as org.apache.solr.analysis
     -->
 
-    <!-- Field type used for partial string matching -->
-    <fieldType name="text" class="solr.TextField" omitNorms="false">
+
+    <!-- Field type used for partial string matching and in the NIEM generic search -->
+    <dynamicField name="*_query" type="text_query"  indexed="true" stored="false" omitNorms="false" omitTermFreqAndPositions="true" />
+    <fieldType name="text_query" class="solr.TextField" omitNorms="false">
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
-        <filter class="solr.StopFilterFactory" words="stopwords.txt"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.PorterStemFilterFactory"/>
         <filter class="solr.NGramFilterFactory" minGramSize="3" maxGramSize="80" />
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.StandardTokenizerFactory"/>
-        <filter class="solr.StopFilterFactory" words="stopwords.txt"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
 
-    <!-- field user for name -->
-    <fieldType name="string_name" class="solr.TextField"
-        sortMissingLast="true">
+    <!-- Field type used for the name of a NIEM entity. Lowercases and eliminates underscores -->
+    <fieldType name="string_name" class="solr.TextField" sortMissingLast="true">
         <analyzer>
           <tokenizer class="solr.KeywordTokenizerFactory"/>           
           <filter class="solr.LowerCaseFilterFactory" />
