@@ -761,7 +761,6 @@
       <str name="echoParams">explicit</str>
       <int name="rows">100</int>
       <str name="wt">json</str>
-      <str name="defType">edismax</str>
       <str name="df">_text_</str>
     </lst>
     <!-- In addition to defaults, "appends" params can be specified
