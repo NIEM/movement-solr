@@ -75,6 +75,10 @@
         'edxl-cap': 'edxl-cap',
         'edxl-de': 'edxl-de',
         'edxl-have': 'edxl-have',
+        'gml': 'gml',
+        'iso': 'iso',
+        'ols': 'ols',
+        'xlink': 'xlink',
         'biometrics': 'biom',
         'cbrn': 'cbrn',
         'cyfs': 'cyfs',
@@ -146,10 +150,19 @@
         }
       } else if (path.indexOf('external') > -1) {
         namespaceType = 'externalStandard';
-        externalStandard = pathSlash.split('external/')[1].split('/')[0];
+        var standard = pathSlash.split('external/')[1].split('/')[0];
+        namespacePriority = 3;
+        
+        // Handle ogc sub-standards such as gml, iso, ols, and xlink
+        if ( standard === 'ogc') {
+          externalStandard = pathSlash.split('external/ogc/')[1].split('/')[0];
+        } else {
+          externalStandard = standard;
+        }
+
         namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
-        namespacePriority = 3;
+
       } else if( path.indexOf('adapters') > -1) {
         namespaceType = 'otherNamespace';
         otherNamespace = pathSlash.split('adapters/')[1].split('/')[0];
