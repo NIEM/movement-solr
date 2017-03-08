@@ -5,6 +5,12 @@
 
     function getNamespaceInfo(row) {
 
+      var ncLookup = {
+        '1': 'nc-3.0.1',
+        '2': 'nc-3.0.2',
+        '3': 'nc-3.0.3'
+      };
+
       var domainLookup = {
         biometrics: 'Biometrics',
         cbrn: 'Chemical, Biological, Radiological, Nuclear',
@@ -115,14 +121,29 @@
         namespaceType = 'domain';
         domain = 'Core';
         namespace = domain;
-        namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 1;
+
+        if ( path.indexOf('3.0/1') > -1 ) {
+          namespacePrefix = ncLookup['1'];
+        } else if ( path.indexOf('3.0/2') > -1 ) {
+          namespacePrefix = ncLookup['2'];
+        } else if ( path.indexOf('3.0/3') > -1 ) {
+          namespacePrefix = ncLookup['3'];
+        } else {
+          namespacePrefix = namespaceLookup[namespace];
+        }
       } else if ( path.indexOf('codes') > -1 ) {
         namespaceType = 'externalStandard';
         externalStandard = pathSlash.split('codes/')[1].split('/')[0];
         namespace = externalStandard;
-        namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 3;
+
+        // Handle one-off cases, such as nga_genc
+        if ( path.indexOf('nga_genc/3.0/1') > -1 ) {
+          namespacePrefix = 'genc-3.0.1';
+        } else {
+          namespacePrefix = namespaceLookup[namespace];
+        }
       } else if (path.indexOf('external') > -1) {
         namespaceType = 'externalStandard';
         externalStandard = pathSlash.split('external/')[1].split('/')[0];
