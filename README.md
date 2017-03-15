@@ -3,23 +3,20 @@ NIEM - WIST: Solr
 
 The other repositories include the [WIST - Webapp](https://github.com/NIEMconnects/wist-frontend) and the [WIST - Backend](https://github.com/NIEMconnects/wist-backend).
 
-# Solr Setup
+Solr is ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
 
-Solr is instantiated and data ingested via Docker. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
+# Running Solr with Docker
 
-To run Solr locally with Docker:
+Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM WIST Docker config:
+```
+docker network create niem-network
+docker run -dti -p 27017:27017 --name wist-mongo --net niem-network
+```
 
+Then build and run the Solr container, from the repo's root directory:
 ```
 docker build -t wist-solr .
-docker run -d -p 8983:8983 -t wist-solr
-```
-
-# Jenkins Job Setup 
-
-```
-#!bin/bash
-chmod u+x deploy.sh
-./deploy.sh
+docker run -dti -p 8983:8983 --name wist-solr --net niem-network wist-solr
 ```
 
 # Native Solr Setup
