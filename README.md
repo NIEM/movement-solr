@@ -3,7 +3,7 @@ NIEM - WIST: Solr
 
 The other repositories include the [WIST - Webapp](https://github.com/NIEMconnects/wist-frontend) and the [WIST - Backend](https://github.com/NIEMconnects/wist-backend).
 
-Solr is ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
+Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
 
 # Running Solr with Docker
 
