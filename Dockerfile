@@ -1,5 +1,5 @@
 FROM solr
-MAINTAINER Sam Rubin "srubin@deloitte.com"
+MAINTAINER Sam Rubin "smrubin"
 
 # Start solr and create core called dhsniem
 RUN /opt/solr/bin/solr start && \
