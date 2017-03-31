@@ -1,13 +1,13 @@
-NIEM - WIST: Solr
+NIEM - Movement: Solr
 =================
 
-The other repositories include the [WIST - Webapp](https://github.com/NIEMconnects/wist-frontend) and the [WIST - Backend](https://github.com/NIEMconnects/wist-backend).
+The other repositories include the [Movement - Webapp](https://github.com/NIEMconnects/movement-frontend) and the [Movement - Backend](https://github.com/NIEMconnects/movement-backend).
 
 Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
 
 # Running Solr with Docker
 
-Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM WIST Docker config:
+Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM Movement Docker config:
 ```
 docker network create niem-network
 docker run -dti -p 27017:27017 --name wist-mongo --net niem-network

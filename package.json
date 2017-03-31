@@ -1,9 +1,8 @@
 {
-  "name": "dhsniem-solr",
+  "name": "NIEM Movement - Solr",
   "version": "0.0.0",
-  "description": "Solr for the NIEM WIST project.",
+  "description": "Solr for the NIEM Movement project.",
   "main": "index.js",
-  "author": "Federal Deloitte Digital",
-  "license": "UNLICENSED",
-  "repository": "https://github.com/NIEMconnects/wist-solr"
+  "author": "NIEMconnects",
+  "repository": "https://github.com/NIEMconnects/movement-solr"
 }
