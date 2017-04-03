@@ -10,13 +10,13 @@ Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be fou
 Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM Movement Docker config:
 ```
 docker network create niem-network
-docker run -dti -p 27017:27017 --name wist-mongo --net niem-network
+docker run -dti -p 27017:27017 --name movement-mongo --net niem-network
 ```
 
 Then build and run the Solr container, from the repo's root directory:
 ```
-docker build -t wist-solr .
-docker run -dti -p 8983:8983 --name wist-solr --net niem-network wist-solr
+docker build -t movement-solr .
+docker run -dti -p 8983:8983 --name movement-solr --net niem-network movement-solr
 ```
 
 # Native Solr Setup
