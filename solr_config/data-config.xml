@@ -152,7 +152,7 @@
         namespaceType = 'externalStandard';
         var standard = pathSlash.split('external/')[1].split('/')[0];
         namespacePriority = 3;
-        
+
         // Handle ogc sub-standards such as gml, iso, ols, and xlink
         if ( standard === 'ogc') {
           externalStandard = pathSlash.split('external/ogc/')[1].split('/')[0];
@@ -192,44 +192,6 @@
 
       return row;
 
-    };
-
-
-    function getFacetList(row) {
-
-      var columns = row.keySet().toArray();
-
-      var facetsObject = {};
-
-      for (var c = 0; c < columns.length; c++) {
-        var columnName = columns[c];
-
-        if (columnName.toLowerCase().contains('facet')) {
-
-          var value = row.get(columnName);
-
-          if (value !== null && value.contains(null) === false) {
-
-            var facetName = columnName.split('_')[1];
-            var facetKey = columnName.split('_')[0];
-
-            if (facetName in facetsObject === false) {
-              facetsObject[facetName] = {};
-            }
-
-            facetsObject[facetName][facetKey] = value.toString();
-
-            row.remove(columnName);
-
-          }
-        }
-
-      }
-
-      var facetString = JSON.stringify(facetsObject);
-      row.put("facets", facetString);
-
-      return row;
     };
 
 
@@ -340,7 +302,7 @@
               url="${f.fileAbsolutePath}"
               processor="XPathEntityProcessor"
               stream="true"
-              transformer="script:getFacetList,TemplateTransformer,script:getFieldLength"
+              transformer="TemplateTransformer,script:getFieldLength"
               forEach="/schema/simpleType" >
 
 
@@ -351,24 +313,6 @@
         <field column="isBG"          template="0" />
 
         <field column="facetValue_enumeration"        xpath="/schema/simpleType/restriction/enumeration/@value" />
-        <field column="facetValue_minInclusive"       xpath="/schema/simpleType/restriction/minInclusive/@value" />
-        <field column="facetValue_maxInclusive"       xpath="/schema/simpleType/restriction/maxInclusive/@value" />
-        <field column="facetValue_minExclusive"       xpath="/schema/simpleType/restriction/minExclusive/@value" />
-        <field column="facetValue_maxExclusive"       xpath="/schema/simpleType/restriction/maxExclusive/@value" />
-        <field column="facetValue_minLength"          xpath="/schema/simpleType/restriction/minLength/@value" />
-        <field column="facetValue_maxLength"          xpath="/schema/simpleType/restriction/maxLength/@value" />
-        <field column="facetValue_pattern"            xpath="/schema/simpleType/restriction/pattern/@value" />
-        <field column="facetValue_totalDigits"        xpath="/schema/simpleType/restriction/totalDigits/@value" />
-
-        <field column="facetDefinition_enumeration"        xpath="/schema/simpleType/restriction/enumeration/annotation/documentation" />
-        <field column="facetDefinition_minInclusive"       xpath="/schema/simpleType/restriction/minInclusive/annotation/documentation" />
-        <field column="facetDefinition_maxInclusive"       xpath="/schema/simpleType/restriction/maxInclusive/annotation/documentation" />
-        <field column="facetDefinition_minExclusive"       xpath="/schema/simpleType/restriction/minExclusive/annotation/documentation" />
-        <field column="facetDefinition_maxExclusive"       xpath="/schema/simpleType/restriction/maxExclusive/annotation/documentation" />
-        <field column="facetDefinition_minLength"          xpath="/schema/simpleType/restriction/minLength/annotation/documentation" />
-        <field column="facetDefinition_maxLength"          xpath="/schema/simpleType/restriction/maxLength/annotation/documentation" />
-        <field column="facetDefinition_pattern"            xpath="/schema/simpleType/restriction/pattern/annotation/documentation" />
-        <field column="facetDefinition_totalDigits"        xpath="/schema/simpleType/restriction/totalDigits/annotation/documentation" />
 
       </entity>
 
