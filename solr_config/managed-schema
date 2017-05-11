@@ -156,9 +156,10 @@
     <field name="parentSimpleType"  type="string" indexed="false" stored="true" />
 
     <!-- SimpleType fields -->
-    <field name="facets"                    type="string" indexed="false" stored="true"   multiValued="true" />
-    <dynamicField name="facetValue_*"       type="string" indexed="false" stored="false"  multiValued="true" />
-    <dynamicField name="facetDefinition_*"  type="string" indexed="false" stored="false"  multiValued="true" />
+    <field name="facetValue_enumeration"               type="string" indexed="false" stored="true"   multiValued="true" />
+    <!-- <field name="facets"                    type="string" indexed="false" stored="true"   multiValued="true" /> -->
+    <!-- <dynamicField name="facetValue_*"       type="string" indexed="false" stored="false"  multiValued="true" /> -->
+    <!-- <dynamicField name="facetDefinition_*"  type="string" indexed="false" stored="false"  multiValued="true" /> -->
 
 
     <!-- Only enabled in the "schemaless" data-driven example (assuming the client
@@ -170,9 +171,6 @@
     <copyField source="name"              dest="name_query"/>
     <copyField source="definition"        dest="definition_query"/>
     <copyField source="type"              dest="type_query"/>
-
-    <!-- Copy the facetValue_enumeration field to facets since it is all required in current release -->
-    <copyField source="facetValue_enumeration"              dest="facets"/>
 
 
     <!-- Dynamic field definitions allow using convention over configuration
