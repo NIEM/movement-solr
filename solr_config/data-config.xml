@@ -152,7 +152,7 @@
         namespaceType = 'externalStandard';
         var standard = pathSlash.split('external/')[1].split('/')[0];
         namespacePriority = 3;
-        
+
         // Handle ogc sub-standards such as gml, iso, ols, and xlink
         if ( standard === 'ogc') {
           externalStandard = pathSlash.split('external/ogc/')[1].split('/')[0];
@@ -195,40 +195,9 @@
     };
 
 
+    // Copy the facetValue_enumeration fields to facets
     function getFacetList(row) {
-
-      var columns = row.keySet().toArray();
-
-      var facetsObject = {};
-
-      for (var c = 0; c < columns.length; c++) {
-        var columnName = columns[c];
-
-        if (columnName.toLowerCase().contains('facet')) {
-
-          var value = row.get(columnName);
-
-          if (value !== null && value.contains(null) === false) {
-
-            var facetName = columnName.split('_')[1];
-            var facetKey = columnName.split('_')[0];
-
-            if (facetName in facetsObject === false) {
-              facetsObject[facetName] = {};
-            }
-
-            facetsObject[facetName][facetKey] = value.toString();
-
-            row.remove(columnName);
-
-          }
-        }
-
-      }
-
-      var facetString = JSON.stringify(facetsObject);
-      row.put("facets", facetString);
-
+      row.put("facets", row.get("facetValue_enumeration"));
       return row;
     };
 
