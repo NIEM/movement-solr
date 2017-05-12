@@ -312,7 +312,8 @@
         <field column="entityType"    template="Type" />
         <field column="isBG"          template="0" />
 
-        <field column="facetValue_enumeration"        xpath="/schema/simpleType/restriction/enumeration/@value" />
+        <field column="enumValues"        xpath="/schema/simpleType/restriction/enumeration/@value" />
+        <field column="enumDefinitions"   xpath="/schema/simpleType/restriction/enumeration/annotation/documentation" />
 
       </entity>
 
