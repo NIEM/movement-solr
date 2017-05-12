@@ -156,7 +156,8 @@
     <field name="parentSimpleType"  type="string" indexed="false" stored="true" />
 
     <!-- SimpleType fields -->
-    <field name="facetValue_enumeration"               type="string" indexed="false" stored="true"   multiValued="true" />
+    <field name="enumValues"               type="string" indexed="false" stored="true"   multiValued="true" />
+    <field name="enumDefinitions"               type="string" indexed="false" stored="true"   multiValued="true" />
     <!-- <field name="facets"                    type="string" indexed="false" stored="true"   multiValued="true" /> -->
     <!-- <dynamicField name="facetValue_*"       type="string" indexed="false" stored="false"  multiValued="true" /> -->
     <!-- <dynamicField name="facetDefinition_*"  type="string" indexed="false" stored="false"  multiValued="true" /> -->
