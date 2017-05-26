@@ -5,6 +5,8 @@ The other repositories include the [Movement - Webapp](https://github.com/NIEMco
 
 Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
 
+Note: Manual updates are required for: 1) Namespace to namespace prefix conversion, as specified in data-config.xml, and 2) Nonparent Types array, as specified in data-config.xml, which can be generated from the movement-backend project node task.
+
 # Running Solr with Docker
 
 Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM Movement Docker config:
