@@ -142,6 +142,7 @@
     <field name="substitutionGroup" type="string"       indexed="true"   stored="true" />
     <field name="type"              type="string"       indexed="false"  stored="true" />
     <field name="abstract"          type="string"       indexed="false"  stored="true" />
+    <field name="isParent"          type="int"          indexed="true"   stored="true" />    
 
     <!-- ComplexType fields -->
     <field name="contentStyle"      type="string" indexed="false" stored="true"  />
