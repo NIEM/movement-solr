@@ -11,9 +11,10 @@
 
       var isParent;
       var typeId = row.get("type");
+      var elementId = row.get("id");
 
       // Check if the element type is a parent
-      if(nonparentTypeIds.indexOf(typeId) > -1) {
+      if(nonparentTypeIds.indexOf(typeId) > -1 && subGroupHeaders.indexOf(elementId) === -1) {
         isParent = 0;
       } else {
         isParent = 1;
@@ -284,7 +285,7 @@
               transformer="TemplateTransformer,script:getIsBG,script:getFieldLength,script:getIsParent"
               forEach="/schema/element" >
 
-        <field column ="id"               template="${f.namespacePrefix}:${element.name}" />
+        <field column="id"               template="${f.namespacePrefix}:${element.name}" />
         <field column="name"              xpath="/schema/element/@name"                      />
         <field column="definition"        xpath="/schema/element/annotation/documentation"  />
         <field column="entityType"        template="Element" />
@@ -301,7 +302,7 @@
               transformer="TemplateTransformer,script:getContentStyle,script:getFieldLength"
               forEach="/schema/complexType" >
 
-        <field column ="id"               template="${f.namespacePrefix}:${complexType.name}" />
+        <field column="id"               template="${f.namespacePrefix}:${complexType.name}" />
         <field column="name"              xpath="/schema/complexType/@name"                       />
         <field column="definition"        xpath="/schema/complexType/annotation/documentation"   />
         <field column="entityType"        template="Type" />
@@ -327,7 +328,7 @@
               forEach="/schema/simpleType" >
 
 
-        <field column ="id"           template="${f.namespacePrefix}:${simpleType.name}" />
+        <field column="id"           template="${f.namespacePrefix}:${simpleType.name}" />
         <field column="name"          xpath="/schema/simpleType/@name"                   />
         <field column="definition"    xpath="/schema/simpleType/annotation/documentation" />
         <field column="entityType"    template="Type" />
