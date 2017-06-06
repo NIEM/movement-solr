@@ -124,7 +124,6 @@
       var namespace;
       var domain;
       var externalStandard;
-      var otherNamespace;
       var namespacePriority;
       var namespacePrefix;
 
@@ -186,15 +185,15 @@
         namespacePrefix = namespaceLookup[namespace];
 
       } else if( path.indexOf('adapters') > -1) {
-        namespaceType = 'otherNamespace';
-        otherNamespace = pathSlash.split('adapters/')[1].split('/')[0];
-        namespace = otherNamespace;
+        namespaceType = 'externalStandard';
+        externalStandard = pathSlash.split('adapters/')[1].split('/')[0];
+        namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
       } else {
-        namespaceType = 'otherNamespace';
-        otherNamespace = pathSlash.split('niem-xsd/')[1].split('/')[0];
-        namespace = otherNamespace;
+        namespaceType = 'externalStandard';
+        externalStandard = pathSlash.split('niem-xsd/')[1].split('/')[0];
+        namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
       }
@@ -203,8 +202,6 @@
         row.put("domain", domain);
       } else if (externalStandard) {
         row.put("externalStandard", externalStandard);
-      } else if (otherNamespace) {
-        row.put("otherNamespace", otherNamespace);
       }
 
       row.put("namespace", namespace);
