@@ -1,8 +1,8 @@
 {
-  "name": "NIEM Movement - Solr",
+  "name": "movement-solr",
   "version": "0.0.0",
   "description": "Solr for the NIEM Movement project.",
   "main": "index.js",
-  "author": "NIEMconnects",
-  "repository": "https://github.com/NIEMconnects/movement-solr"
+  "author": "NIEM",
+  "repository": "https://github.com/NIEM/movement-solr"
 }
