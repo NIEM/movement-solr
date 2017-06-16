@@ -12,7 +12,7 @@ Note: Manual updates are required for: 1) Namespace to namespace prefix conversi
 ## Got feedback? 
 For general tool feedback or issues please [open an issue in the Movement repo](https://github.com/NIEM/Movement/issues)  or [contact us on NIEM.gov](https://niem.gov/contact-us). 
 
-For topics specific to contributions to Movement's frontend, please [submit an issue](https://github.com/NIEM/movement-solr/issues).
+For topics specific to contributions to Movement's Solr, please [submit an issue](https://github.com/NIEM/movement-solr/issues).
 # Running Solr with Docker
 
 Solr can be run via Docker. To run the Solr locally with Docker, first make sure you have installed and setup the NIEM Movement Docker config:
