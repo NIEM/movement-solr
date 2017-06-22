@@ -10,7 +10,7 @@ Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be fou
 Note: Manual updates are required for: 1) Namespace to namespace prefix conversion, as specified in data-config.xml, and 2) Nonparent Types array, as specified in data-config.xml, which can be generated from the movement-backend project node task.
 
 ## Got feedback? 
-In the spirit of open-source tooling, we have provided a [Scrum board](https://github.com/NIEM/Movement/projects/1) that allows users to keep track of Movement’s issues and enhancements. Anyone can [submit a new issue](https://github.com/NIEM/Movement/issues) for the tool for something they would like to see added or a bug. Once reviewed by the engineering team, issues will be added to the Scrum board's backlog. Developers and tool contributors can then address issues from the backlog and track their status using the Scrum board—providing an Agile approach to development and complete transparency to users.
+In the spirit of open-source tooling, we have provided a [Scrum board](https://github.com/NIEM/Movement/projects/1) that allows users to keep track of Movement’s issues and enhancements. Anyone can [submit a new issue](https://github.com/NIEM/Movement/issues) for the tool for something they would like to see added or a bug. Once reviewed by the program office, issues will be added to the Scrum board's backlog. Developers and tool contributors can then address issues from the backlog and track their status using the Scrum board—providing an Agile approach to development and complete transparency to users.
 
 # Running Solr with Docker
 
