@@ -3,9 +3,14 @@ NIEM - Movement: Solr
 
 The other repositories include the [Movement - Webapp](https://github.com/NIEM/movement-frontend) and the [Movement - Backend](https://github.com/NIEM/movement-backend).
 
+Prior to coming to this repo, did you happen to catch our [Movement overview](https://github.com/NIEM/Movement)?
+
 Solr ingests the NIEM XSD data. The data is located in ./niem-xsd and can be found on https://www.niem.gov/techhub/niem-model/current-release
 
 Note: Manual updates are required for: 1) Namespace to namespace prefix conversion, as specified in data-config.xml, and 2) Nonparent Types array, as specified in data-config.xml, which can be generated from the movement-backend project node task.
+
+## Got feedback? 
+In the spirit of open-source tooling, we have provided a [Scrum board](https://github.com/NIEM/Movement/projects/1) that allows users to keep track of Movement’s issues and enhancements. Anyone can [submit a new issue](https://github.com/NIEM/Movement/issues) for the tool for something they would like to see added or a bug. Once reviewed by the program office, issues will be added to the Scrum board's backlog. Developers and tool contributors can then address issues from the backlog and track their status using the Scrum board—providing an Agile approach to development and complete transparency to users.
 
 # Running Solr with Docker
 
