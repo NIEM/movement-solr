@@ -1,4 +1,4 @@
-FROM solr
+FROM solr:6.6
 MAINTAINER Sam Rubin "smrubin"
 
 # Start solr and create core called dhsniem
