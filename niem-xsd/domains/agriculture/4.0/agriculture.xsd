@@ -3,11 +3,11 @@
   <xs:annotation>
     <xs:documentation>Agriculture</xs:documentation>
     <xs:appinfo>
-      <appinfo:LocalTerm term="AIP" literal="Approved Insurance Provider"/>
       <appinfo:LocalTerm term="ANSI" literal="American National Standards Institute"/>
       <appinfo:LocalTerm term="RMA" literal="Risk Management Agency"/>
       <appinfo:LocalTerm term="NRCS" literal="Natural Resources Conservation Service"/>
       <appinfo:LocalTerm term="SCIMS" literal="Service Center Information Management System"/>
+      <appinfo:LocalTerm term="AIP" literal="Approved Insurance Provider"/>
       <appinfo:LocalTerm term="CLU" literal="Common Land Unit"/>
       <appinfo:LocalTerm term="MICS" literal="Mobile Implement Control System"/>
       <appinfo:LocalTerm term="FIPS" literal="Federal Information Processing Standards"/>
