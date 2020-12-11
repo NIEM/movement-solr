@@ -49,6 +49,7 @@
         'edxl-de': 'edxl-de',
         'edxl-have': 'edxl-have',
         'geospatial': 'geo',
+        'niem-xs': 'niem-xs',
         'cui': 'cui',
         'statistics': 'stat',
         'aamva_d20': 'aamva_d20',
@@ -146,7 +147,7 @@
         namespacePrefix = namespaceLookup[namespace];
       } else if ( path.indexOf('codes') > -1 ) {
         namespaceType = 'externalStandard';
-        externalStandard = pathSlash.split('/codes/')[1].split('/')[0];
+        externalStandard = pathSlash.split('/codes/')[1].split('.')[0];
         namespace = externalStandard;
         namespacePriority = 3;
         namespacePrefix = namespaceLookup[namespace];
@@ -162,24 +163,35 @@
           externalStandard = standard;
         }
 
+        // Handle external/de.xsd
+        if (pathSlash.indexOf('de.xsd') > -1) {
+            externalStandard = 'de';
+        }
+
         namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
 
       } else if( path.indexOf('adapters') > -1) {
         namespaceType = 'externalStandard';
-        externalStandard = pathSlash.split('adapters/')[1].split('/')[0];
+        externalStandard = pathSlash.split('adapters/')[1].split('.')[0];
         namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
-      } else if( path.indexOf('utility') > -1) {
+      } else if( path.indexOf('auxiliary') > -1) {
         namespaceType = 'externalStandard';
-        externalStandard = pathSlash.split('utility/')[1].split('/')[0];
+        externalStandard = pathSlash.split('auxiliary/')[1].split('.')[0];
+        namespace = externalStandard;
+        namespacePrefix = namespaceLookup[namespace];
+        namespacePriority = 4;
+      }else if( path.indexOf('utility') > -1) {
+        namespaceType = 'externalStandard';
+        externalStandard = pathSlash.split('utility/')[1].split('.')[0];
         namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
       } else {
         namespaceType = 'externalStandard';
-        externalStandard = pathSlash.split('niem-xsd/')[1].split('/')[0];
+        externalStandard = pathSlash.split('niem-xsd/')[1].split('.')[0];
         namespace = externalStandard;
         namespacePrefix = namespaceLookup[namespace];
         namespacePriority = 4;
