@@ -31,7 +31,7 @@
         agriculture: 'Agriculture',
         biom: 'Biometrics',
         cbrn: 'Chemical, Biological, Radiological, Nuclear',
-		cyber: 'Cyber',
+	cyber: 'Cyber',
         emergencyManagement: 'Emergency Management',
         hs: 'Human Services',
         immigration: 'Immigration',
