@@ -35,7 +35,7 @@
         emergencyManagement: 'Emergency Management',
         hs: 'Human Services',
         immigration: 'Immigration',
-        infrastructureProtection: 'Infrastructure Protection',
+        ip: 'Infrastructure Protection',
         intelligence: 'Intelligence',
         internationalTrade: 'International Trade',
         jxdm: 'Justice',
